@@ -46,3 +46,45 @@ export const Post = ({title, imageUrl, createdAt}) => {
     );
 
 }
+
+
+
+import axios from 'axios';
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { Post } from './components/post';
+import { Alert, StyleSheet, Text, View } from 'react-native';
+
+export default function App() {
+  const [items, setItems] = React.useState();
+
+
+  React.useEffect(() =>
+  {
+    axios.get('https://63035bc79eb72a839d7eb2d9.mockapi.io/JsonPosts')
+    .then(({data}) => 
+    {
+      setItems(data);
+    }).catch(err => { 
+      Alert.alert('Error', 'network')
+    });
+  }, []
+  );
+
+  return (
+    <View>
+      {
+        [... items, ... items].map((obj) => (
+          <Post 
+          title={obj.title}
+          createdAt = {obj.createdAt}
+          imageUrl = {obj.imageUrl}      />
+        ))
+      }
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+
+
