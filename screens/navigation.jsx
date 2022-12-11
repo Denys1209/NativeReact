@@ -32,7 +32,7 @@ const startStack = createNativeStackNavigator();
 export const Navigation = () => 
 {
    
-    const [isLoading, setIsLoading] = react.useState(true);
+    const [isLoading, setIsLoading] = react.useState(false);
     const [user, setUser] = react.useState();
     const authContext = react.useMemo(() =>{
       return {

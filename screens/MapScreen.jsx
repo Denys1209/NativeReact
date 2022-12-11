@@ -36,27 +36,28 @@ export const  MapScreen = ({navigation}) => {
   {
       return <Loading/> 
   }
-
+  
 
 
   return (
     <View style={styles.container}>
       
       <MapView style={styles.map} >
-      {items.map((item) => 
       {
-         return (<Marker 
-         key={item.id} 
-         coordinate={{latitude: item.latitude, longitude: item.longitude}}
-         onCalloutPress={() => navigation.navigate('FullPostScreen', {id: item.id, Data:item})}
-         >
-          <Callout  tooltip={true}>
+        items.map((item) => 
+        {
+           return (<Marker 
+           key={item.id} 
+           coordinate={{latitude: item.latitude, longitude: item.longitude}}
+           onCalloutPress={() => navigation.navigate('FullPostScreen', {id: item.id, Data:item})}
+           >
+            <Callout  tooltip={true}>
+            
+            <PointOnMap item = {item}/>
           
-          <PointOnMap item = {item}/>
-        
-          </Callout>
-          </Marker>)
-      })
+            </Callout>
+            </Marker>)
+        })
     }
    
       </MapView>
